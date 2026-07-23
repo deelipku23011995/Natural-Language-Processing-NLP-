@@ -111,3 +111,12 @@ The “Encoder-Decoder Attention” layer works just like multiheaded self-atten
 
 ### The last The Final Linear and Softmax Layer
 The softmax layer then turns those scores into probabilities (all positive, all add up to 1.0). The cell with the highest probability is chosen, and the word associated with it is produced as the output for this time step.
+
+
+# BERT 
+To train such a model, you mainly have to train the classifier, with minimal changes happening to the BERT model during the training phase. This training process is called Fine-Tuning
+
+Both BERT model sizes have a large number of encoder layers (which the paper calls Transformer Blocks) – twelve for the Base version, and twenty four for the Large version. These also have larger feedforward-networks (768 and 1024 hidden units respectively), and more attention heads (12 and 16 respectively) than the default configuration in the reference implementation of the Transformer in the initial paper (6 encoder layers, 512 hidden units, and 8 attention heads).
+
+The first input token is supplied with a special [CLS] token for reasons that will become apparent later on. CLS here stands for Classification.
+
