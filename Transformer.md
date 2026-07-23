@@ -97,3 +97,17 @@ This single equation performs:
 | **Softmax**   | Converts scores into attention probabilities        |
 | **Output**    | Context-aware representation of each input word     |
 
+
+## Representing The Order of The Sequence Using Positional Encoding
+
+the transformer adds a vector to each input embedding. These vectors follow a specific pattern that the model learns, which helps it determine the position of each word, or the distance between different words in the sequence. The intuition here is that adding these values to the embeddings provides meaningful distances between the embedding vectors once they’re projected into Q/K/V vectors and during dot-product attention.
+
+## The Decoder Side
+
+The output of the top encoder is then transformed into a set of attention vectors K and V. These are to be used by each decoder in its “encoder-decoder attention” layer which helps the decoder focus on appropriate places in the input sequence
+
+The “Encoder-Decoder Attention” layer works just like multiheaded self-attention, except it creates its Queries matrix from the layer below it, and takes the Keys and Values matrix from the output of the encoder stack.
+
+
+### The last The Final Linear and Softmax Layer
+The softmax layer then turns those scores into probabilities (all positive, all add up to 1.0). The cell with the highest probability is chosen, and the word associated with it is produced as the output for this time step.
